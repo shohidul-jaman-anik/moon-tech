@@ -11,9 +11,13 @@ const ProductCard = ({ product }) => {
 
   return (
     <div
-      className='shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900'
+      className='shadow-lg rounded-3xl border  p-3 flex flex-col text-indigo-900 relative'
       key={product._id}
     >
+      {pathname.includes("cart") && <span class="bg-indigo-500 text-white h-8 w-8 grid place-items-center rounded-full absolute top-0 right-0 ">
+        <p>{product.quantity}</p>
+      </span>}
+
       <div className='h-52 w-52 mx-auto'>
         <img src={product.image} alt={product.model} />
       </div>
@@ -27,7 +31,7 @@ const ProductCard = ({ product }) => {
         </ul>
       </div>
       <div className='flex gap-2 mt-5'>
-        {pathname.includes("cart") && (<button className='bg-red-100 rounded-full  py-1 px-2 flex-1'
+        {pathname.includes("cart") && (<button className='bg-red-100 rounded-full  py-1 px-2 flex-1 font-semibold'
           onClick={() => dispatch(removeFromCart(product))}>
           Remove ❌
         </button>)}
